@@ -1,5 +1,4 @@
 <template>
-    <div class="list-wrapper">
     <el-tabs v-model="activeTabName"  type="card" @tab-click="tabHandleClick"  class="el_tabs1">
         <el-tab-pane label="已实现队列" name="first">
             <el-table
@@ -31,7 +30,6 @@
         <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
         <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
     </el-tabs>
-    </div>
 </template>
 
 <script>
