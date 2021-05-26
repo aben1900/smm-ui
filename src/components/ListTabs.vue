@@ -1,36 +1,37 @@
 <template>
-  <div class="list_tabs">
-  <el-tabs  v-model="activeTabName" type="card" @tab-click="tabHandleClick" >
-    <el-tab-pane label="已实现队列" name="first">
-      <el-table
-          class="tabs_table"
-          stripe
-          :data="dreamData" >
-        <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="name"
-            label="称呼"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="address"
-            label="地区">
-        </el-table-column>
-        <el-table-column
-            prop="address"
-            label="地区">
-        </el-table-column>
-      </el-table>
-    </el-tab-pane>
-    <el-tab-pane label="等待队列" name="second">配置管理</el-tab-pane>
-    <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-    <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
-  </el-tabs>
-  </div>
+    <div class="list-wrapper">
+    <el-tabs v-model="activeTabName"  type="card" @tab-click="tabHandleClick"  class="el_tabs1">
+        <el-tab-pane label="已实现队列" name="first">
+            <el-table
+                    stripe
+                    fit
+                    :height="tableHeight"
+                    :data="dreamData" >
+                <el-table-column
+                        prop="date"
+                        label="日期"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="name"
+                        label="称呼"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="address"
+                        label="地区">
+                </el-table-column>
+                <el-table-column
+                        prop="address"
+                        label="地区">
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="等待队列" name="second">配置管理</el-tab-pane>
+        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+        <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+    </el-tabs>
+    </div>
 </template>
 
 <script>
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       activeTabName: 'first',
+      tableHeight: null,
       dreamData: [
         {
           date: '2021-05-18 14:22:10',
@@ -63,26 +65,25 @@ export default {
         {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'},
         {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'},
         {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'},
-        {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'}
+        {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'},
+        {date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄'},
       ],
     }
   },
   mounted() {
+      this.$nextTick(function (){
+          this.tableHeight = window.innerHeight - 500
+          let that = this
+          window.addEventListener('resize',() =>that.tableHeight = window.innerHeight - 500,false)
+      })
   },
   methods: {
     tabHandleClick(tab, event) {
       console.log(tab, event);
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
-/*.el-tabs >>> .el-tabs__content{*/
-/*  height: 100%;*/
-/*}*/
-.list_tabs{
-}
-.tabs_table{
-}
 </style>
